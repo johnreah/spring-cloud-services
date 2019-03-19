@@ -1,0 +1,40 @@
+#==============================================================================
+# Using YAML allows multiple profiles to be included in a single config file.
+# I'm setting up some mongo test data at one point, and as this is obviously a
+# destructive activity I've restricted that class to the "local" profile.
+# Program arguments:
+#   --spring.profiles.active=local
+#==============================================================================
+
+server:
+  port: 9090
+
+spring:
+  application:
+    name: admin-service
+
+info:
+  description: Spring Boot admin service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: docker-cluster
+
+server:
+  port: ${ADMIN_PORT:9090}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}

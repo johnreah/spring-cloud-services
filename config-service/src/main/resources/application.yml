@@ -1,0 +1,103 @@
+#==============================================================================
+# Using YAML allows multiple profiles to be included in a single config file.
+# Program arguments:
+#   --spring.profiles.active=local
+#==============================================================================
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+
+info:
+  description: Configuration service
+
+---
+spring:
+  profiles: laptop
+
+  cloud:
+    config:
+      server:
+        #BEWARE: svn requires extra dependency in POM, doesn't appear to support composite,
+        #        requires active profile "subversion", and tries to download entire repo
+        git:
+          uri: https://github.com/johnreah/spring-boot-config
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_PASSWORD}
+
+#        svn:
+#          uri: https://htkhorizon.svn.beanstalkapp.com/user/
+#          username:
+#          password:
+
+#        composite:
+#          -
+#            type: git
+#            uri: https://github.com/johnreah/spring-boot-config
+#            username:
+#            password:
+#          -
+#            type: svn
+#            uri: https://htkhorizon.svn.beanstalkapp.com/user
+#            username:
+#            password:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhostxxx:8761/eureka
+
+---
+spring:
+  profiles: desktop-ide
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/johnreah/spring-boot-config
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhostyyy:8761/eureka
+
+---
+spring:
+  profiles: desktop-docker
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/johnreah/spring-boot-config
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://192.168.20.199:8761/eureka

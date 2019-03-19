@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+
+  eureka1:
+    image: eureka-service:latest
+    container_name: eureka1
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker-cluster
+      - LOGGING_LEVEL_COM_NETFLIX_DISCOVERY=DEBUG
+      - EUREKA_HOST=eureka1
+      - EUREKA_PORT=8761
+      - EUREKA_PEER_HOST=eureka2
+      - EUREKA_PEER_PORT=8762
+    ports:
+      - "8761:8761"
+    networks:
+      - network-eureka
+
+  eureka2:
+    image: eureka-service:latest
+    container_name: eureka2
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker-cluster
+      - LOGGING_LEVEL_COM_NETFLIX_DISCOVERY=DEBUG
+      - EUREKA_HOST=eureka2
+      - EUREKA_PORT=8762
+      - EUREKA_PEER_HOST=eureka1
+      - EUREKA_PEER_PORT=8761
+    ports:
+      - "8762:8762"
+    networks:
+      - network-eureka
+
+  admin:
+    image: admin-service:latest
+    container_name: admin
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker-cluster
+      - ADMIN_PORT=9090
+      - EUREKA_URL=http://eureka1:8761/eureka
+    ports:
+      - "9090:9090"
+    networks:
+      - network-eureka
+
+networks:
+  network-eureka:
