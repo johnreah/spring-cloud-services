@@ -16,7 +16,7 @@ info:
 
 ---
 spring:
-  profiles: laptop
+  profiles: laptop-ide
 
   cloud:
     config:
@@ -54,7 +54,7 @@ management:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhostxxx:8761/eureka
+      defaultZone: http://localhost:8761/eureka
 
 ---
 spring:
@@ -77,7 +77,7 @@ management:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhostyyy:8761/eureka
+      defaultZone: http://localhost:8761/eureka
 
 ---
 spring:
