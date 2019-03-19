@@ -1,8 +1,8 @@
 # spring-cloud-services
 This project started as an experiment with some of the Spring Boot services that support
 running distributed systems in a cloud environment. It was triggered by reading the 5th edition of Craig
-Walls's Spring In action book, and it tied in with a project at work that looks like it will be deployed
-on Docker containers.
+Walls's [Spring In Action](https://www.manning.com/books/spring-in-action-fifth-edition) book, and it tied in with a
+project at work that looks like a natural fit to run in Docker.
 
 These libraries and services include:
 - [Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/): a module that exposes operational information
@@ -17,6 +17,6 @@ provided by the other services to provide monitoring and management capability f
 ## What's in the project
 The project is structured as a multi-module Maven project. The parent POM has a number of sub-modules, each of which
 builds a web service packaged as an executable JAR by the `spring-boot-maven-plugin`. Within each of the sub-modules'
-directories there is also a `docker` subdirectory which includes files and scripts to build Docker images. There are
-also `docker-compose.yml` files to bring up different combinations of services for testing.
+directories there is also a `docker` subdirectory which includes files and scripts to build Docker images, and
+`docker-compose.yml` files to bring up different combinations of services for testing.
 
