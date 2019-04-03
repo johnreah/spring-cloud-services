@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/config-service/config-service.iml" filepath="$PROJECT_DIR$/config-service/config-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/my-web-service/my-web-service.iml" filepath="$PROJECT_DIR$/my-web-service/my-web-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-web-service-consumer/my-web-service-consumer.iml" filepath="$PROJECT_DIR$/my-web-service-consumer/my-web-service-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-services.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-services.iml" />
     </modules>
   </component>

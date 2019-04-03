@@ -48,6 +48,7 @@
         <module>eureka-service</module>
         <module>admin-service</module>
         <module>my-web-service</module>
+        <module>my-web-service-consumer</module>
     </modules>
 
 </project>

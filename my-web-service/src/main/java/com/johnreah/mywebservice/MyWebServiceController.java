@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.Optional;
+
 @RestController
 @RequestMapping("/mywebservice")
 @CrossOrigin(origins = {"*"})
@@ -21,12 +23,11 @@ public class MyWebServiceController {
         this.environment = environment;
     }
 
-    @GetMapping("/info")
+    @GetMapping("/localServerPort")
     public String getInfo() {
-        String info;
-        info = String.format("localServerPort = %s", environment.getProperty("local.server.port"));
-        log.info(String.format("Controller returning: %s", info));
-        return info;
+        String localServerPort = environment.getProperty("local.server.port");
+        log.info(String.format("%s", localServerPort));
+        return localServerPort;
     }
 
 }
