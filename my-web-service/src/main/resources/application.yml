@@ -1,0 +1,70 @@
+#==============================================================================
+# Using YAML allows multiple profiles to be included in a single config file.
+# Program arguments:
+#   --spring.profiles.active=local
+#==============================================================================
+
+server:
+  port: 0
+
+spring:
+  application:
+    name: my-web-service
+
+info:
+  description: Example web service
+
+---
+spring:
+  profiles: laptop-ide
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: desktop-ide
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+  instance:
+#    hostname: localhost${eureka.suffix}
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#    metadata-map:
+#      applicationId: my-web-service-${eureka.suffix}
+#      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+#  instance:
+#    hostname: localhost1
+
+---
+spring:
+  profiles: desktop-docker
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://192.168.20.199:8761/eureka
