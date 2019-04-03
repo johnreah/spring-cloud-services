@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class MyWebServiceController {
 
+    private Environment environment;
+
     @Autowired
-    Environment environment;
+    public MyWebServiceController(Environment environment) {
+        this.environment = environment;
+    }
 
     @GetMapping("/info")
     public String getInfo() {
